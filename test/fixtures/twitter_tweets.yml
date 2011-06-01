@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  date: 2011-05-30
+  tweets_containing: 1
+  mentions: 1
+  followers: 1
+  startup_tweets: 1
+  retweets: 1
+
+two:
+  date: 2011-05-30
+  tweets_containing: 1
+  mentions: 1
+  followers: 1
+  startup_tweets: 1
+  retweets: 1

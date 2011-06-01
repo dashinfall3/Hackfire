@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  business: false
+  technical: false
+  score: 1
+  investment_score: 1
+  exit_score: 1
+  experience_score: 1
+  notes: MyText
+
+two:
+  name: MyString
+  business: false
+  technical: false
+  score: 1
+  investment_score: 1
+  exit_score: 1
+  experience_score: 1
+  notes: MyText

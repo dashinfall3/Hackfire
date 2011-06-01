@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  employee_id: 1
+  company_id: 1
+  tenure: 1
+  position: MyString
+  through_exit: false
+  date_joined: 2011-05-29
+  date_left: 2011-05-29
+
+two:
+  employee_id: 1
+  company_id: 1
+  tenure: 1
+  position: MyString
+  through_exit: false
+  date_joined: 2011-05-29
+  date_left: 2011-05-29

@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  tweets: 1
+  facebook_likes: 1
+  traffic_total: 1
+  blog_mentions: 1
+  industry: MyString
+  description: MyText
+  entrepeneur1_id: MyString
+  entrepreneur2_id: MyString
+  entrepreneur3_id: MyString
+
+two:
+  tweets: 1
+  facebook_likes: 1
+  traffic_total: 1
+  blog_mentions: 1
+  industry: MyString
+  description: MyText
+  entrepeneur1_id: MyString
+  entrepreneur2_id: MyString
+  entrepreneur3_id: MyString

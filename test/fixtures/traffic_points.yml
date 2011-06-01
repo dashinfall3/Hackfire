@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  date: 2011-05-30
+  unique_views: 1
+  visits: 1
+  pageviews: 1
+  time_on_site: 1
+  visits_person: 1
+  pages_visit: 1
+
+two:
+  date: 2011-05-30
+  unique_views: 1
+  visits: 1
+  pageviews: 1
+  time_on_site: 1
+  visits_person: 1
+  pages_visit: 1
