@@ -79,15 +79,68 @@ class PageController < ApplicationController
 #	puts @crunchdata["twitter_username"]
 #	puts @crunchdata ["milestones"]
 
-user_info = Twitter::Client.new.user("techcrunch")	
-@techcrunch=user_info['followers_count']
-startup= Startup.find_by_name("Gowalla")
+#user_info = Twitter::Client.new.user("techcrunch")	
+#@techcrunch=user_info['followers_count']
+#startup= Startup.find_by_name("Gowalla")
 
 
 			#result = JSON.parse(open("https://graph.facebook.com/" + startup.name).read)
 			#likes = result["likes"]
 			#date = Time.now
 			#startup.update_attribute(:facebook_likes, likes)
+#mentions			
+topsy = JSON.parse(open("http://otter.topsy.com/search.json?q=@foursquare&window=d").read)
+puts topsy['response']['total']
+
+#tweets about startup
+tweets_about = JSON.parse(open("http://otter.topsy.com/search.json?q='foursquare'&window=d&type=tweet").read)
+puts tweets_about['response']['total']
+
+#topsy total search - update all and store day
+topsy_search_total = JSON.parse(open("http://otter.topsy.com/searchcount.json?q='mapding'").read)
+puts topsy_search_total['response']['a']
+puts topsy_search_total['response']['d']
+
+#topsy url tweets of a startups url- not working
+#http://otter.topsy.com/stats.json?url=http://www.bragtaggs.com/
+
+#description
+#http://otter.topsy.com/urlinfo.json?url=http://mapding.com/
+
+#experts gives name and twitter name
+startup_experts = JSON.parse(open("http://otter.topsy.com/experts.json?q=mapding").read)
+startup_experts = startup_experts['response']['list']
+	startup_experts.each do |expert|
+		puts expert['name']
+		puts expert['nick']
+		puts expert['influence_level']
+		puts expert['url']
+
+	end
+startup_data = JSON.parse(open("http://api.crunchbase.com/v/1/company/gowalla.js").read)
+			milestones = startup_data['milestones']
+			for milestone in milestones
+				milestone_description = milestone['description']
+				milestone_source = milestone['source_url']
+				milestone_date_year = milestone['stoned_year'].to_s
+				milestone_date_month = milestone['stoned_month'].to_s
+				milestone_date_day = milestone['stoned_day'].to_s
+				milestone_date = milestone_date_day + "/" + milestone_date_month + "/" + milestone_date_year
+				milestone_type = ""
+				milestone_product = milestone_description =~ /launches|launched|launch|beta|alpha/i
+				if milestone_product ==0
+					milestone_type = "product_launch"
+				end
+				milestone_award = milestone_description =~ /award|awarded|awards|named|given|wins|won/i
+				if milestone_award == 0 
+					milestone_type = "award"
+				end
+				startup = Startup.first
+				startup.milestones.create(:startup_id => startup.id, :type => milestone_type, :description => milestone_description, :source => milestone_source, :date => milestone_date)
+			end
+
+
+
 end
 
 

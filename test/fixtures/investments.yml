@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  amount: 1
+  series: MyString
+  company_id: 1
+  financial_organization_id: 1
+  date: 2011-06-02
+  currency: MyString
+
+two:
+  amount: 1
+  series: MyString
+  company_id: 1
+  financial_organization_id: 1
+  date: 2011-06-02
+  currency: MyString

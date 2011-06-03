@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110531063533) do
+ActiveRecord::Schema.define(:version => 20110603204229) do
 
   create_table "blog_entries", :force => true do |t|
     t.date     "date"
@@ -19,7 +19,20 @@ ActiveRecord::Schema.define(:version => 20110531063533) do
     t.string   "link"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "author"
+    t.integer  "guid"
+    t.text     "summary"
   end
+
+  create_table "blog_entry_relationships", :force => true do |t|
+    t.integer  "blog_entry_id"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "blog_entry_relationships", ["blog_entry_id"], :name => "index_blog_entry_relationships_on_blog_entry_id"
+  add_index "blog_entry_relationships", ["company_id"], :name => "index_blog_entry_relationships_on_company_id"
 
   create_table "employee_relationships", :force => true do |t|
     t.integer  "employee_id"
@@ -37,23 +50,6 @@ ActiveRecord::Schema.define(:version => 20110531063533) do
   add_index "employee_relationships", ["company_id"], :name => "index_employee_relationships_on_company_id"
   add_index "employee_relationships", ["employee_id"], :name => "index_employee_relationships_on_employee_id"
 
-  create_table "employees", :force => true do |t|
-    t.string   "name"
-    t.boolean  "business"
-    t.boolean  "technical"
-    t.integer  "score"
-    t.integer  "investment_score"
-    t.integer  "exit_score"
-    t.integer  "experience_score"
-    t.text     "notes"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "permalink"
-  end
-
-  add_index "employees", ["name"], :name => "index_employees_on_name"
-  add_index "employees", ["permalink"], :name => "index_employees_on_permalink"
-
   create_table "facebook_likes", :force => true do |t|
     t.integer  "company_id"
     t.date     "date"
@@ -63,6 +59,67 @@ ActiveRecord::Schema.define(:version => 20110531063533) do
   end
 
   add_index "facebook_likes", ["company_id"], :name => "index_facebook_likes_on_company_id"
+
+  create_table "financial_organizations", :force => true do |t|
+    t.string   "name"
+    t.integer  "investments_number"
+    t.string   "type"
+    t.integer  "investments_amount"
+    t.integer  "exits"
+    t.integer  "exits_amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "permalink"
+  end
+
+  add_index "financial_organizations", ["name"], :name => "index_financial_organizations_on_name"
+
+  create_table "investments", :force => true do |t|
+    t.integer  "amount"
+    t.string   "series"
+    t.integer  "company_id"
+    t.integer  "financial_organization_id"
+    t.date     "date"
+    t.string   "currency"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "investments", ["company_id"], :name => "index_investments_on_company_id"
+  add_index "investments", ["financial_organization_id"], :name => "index_investments_on_financial_organization_id"
+
+  create_table "milestones", :force => true do |t|
+    t.integer  "startup_id"
+    t.string   "type"
+    t.text     "description"
+    t.date     "date"
+    t.string   "source"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "milestones", ["startup_id"], :name => "index_milestones_on_startup_id"
+
+  create_table "people", :force => true do |t|
+    t.string   "name"
+    t.boolean  "business"
+    t.boolean  "technical"
+    t.integer  "score"
+    t.integer  "investment_score"
+    t.integer  "exit_score"
+    t.integer  "experience_score"
+    t.text     "notes"
+    t.integer  "investments"
+    t.string   "investor_type"
+    t.integer  "investment_amount"
+    t.integer  "investment_exits"
+    t.integer  "investment_exits_amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "permalink"
+  end
+
+  add_index "people", ["name"], :name => "index_people_on_name"
 
   create_table "startups", :force => true do |t|
     t.integer  "tweets"
@@ -112,6 +169,7 @@ ActiveRecord::Schema.define(:version => 20110531063533) do
     t.integer  "retweets"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "social_search_total_mentions"
   end
 
   add_index "twitter_tweets", ["company_id"], :name => "index_twitter_tweets_on_company_id"

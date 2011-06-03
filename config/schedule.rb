@@ -20,9 +20,22 @@
 # Learn more: http://github.com/javan/whenever
 
 every 24.hours do
+	
 	runner "Startup.update_startups", :environment => :development
 	runner "Startup.update_facebook", :environment => :development
-	runner "Startup.update_tweets", :environment => :development
+	runner "BlogEntry.update_from_feed('http://feeds.feedburner.com/mashable')", :environment => :development
+	runner "BlogEntry.update_from_feed('http://feeds.feedburner.com/techcrunch')", :environment => :development
+	runner "BlogEntry.update_from_feed('http://feeds.feedburner.com/techcocktail')", :environment => :development
+	runner "BlogEntry.update_from_feed('http://feeds.feedburner.com/techcrunch')", :environment => :development
+	runner "BlogEntry.update_from_feed('http://feeds.feedburner.com/flyovergeeks')", :environment => :development
+	runner "BlogEntry.update_from_feed('http://feeds.feedburner.com/technori')", :environment => :development
 	runner "Startup.update_compete", :environment => :development
+	runner "BlogEntry.update_article_connections", :environment => :development
 end
+
+every 24.hours do
+	runner "Startup.update_tweets", :environment => :development
+end
+
+
 

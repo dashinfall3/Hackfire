@@ -12,6 +12,7 @@ gem 'yajl-ruby'
 gem 'rest-open-uri'
 gem 'whenever', :require => false
 gem 'nokogiri'
+gem 'feedzirra'
 
 # Use unicorn as the web server
 # gem 'unicorn'

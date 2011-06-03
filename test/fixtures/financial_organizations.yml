@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  investments_number: 1
+  type: MyString
+  investments_amount: 1
+  exits: 1
+  exits_amount: 1
+
+two:
+  name: MyString
+  investments_number: 1
+  type: MyString
+  investments_amount: 1
+  exits: 1
+  exits_amount: 1
